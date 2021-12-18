@@ -42,9 +42,10 @@ include_once 'dbConnection.php';
         } else {
           $name = $_SESSION['name'];
           $email = $_SESSION['email'];
+          $id = $_SESSION['id'];
 
           include_once 'dbConnection.php';
-          echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Welcome,</span> <a href="account.php?q=1" class="log log1">' . $name . '</a>&nbsp;|&nbsp;<a href="logout.php?q=account.php" class="log"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Signout</button></a></span>';
+          echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Welcome,</span> <a href="account.php?q=5" class="log log1">' . $name . '</a>&nbsp;|&nbsp;<a href="logout.php?q=account.php" class="log"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Signout</button></a></span>';
         } ?>
       </div>
     </div>
@@ -70,7 +71,7 @@ include_once 'dbConnection.php';
           <ul class="nav navbar-nav navbar left">
             <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="account.php?q=1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home<span class="sr-only">(current)</span></a></li>
             <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="account.php?q=2"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;History</a></li>
-            <li <?php if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="account.php?q=3"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Ranking</a></li>
+            <!-- <li <?php //if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="account.php?q=3"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Ranking</a></li> -->
 
           </ul>
 
@@ -93,31 +94,54 @@ include_once 'dbConnection.php';
 
             $result = mysqli_query($con, "SELECT * FROM quiz ORDER BY date DESC") or die('Error');
             echo  '<div class="panel"><table class="table table-striped title1">
-<tr style="color:black"><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Marks</b></td><td><b>positive</b></td><td><b>negative</b></td><td><b>Time limit</b></td><td></td><td></td></tr>';
-            $c = 1;
-            while ($row = mysqli_fetch_array($result)) {
-              $title = $row['title'];
-              $total = $row['total'];
-              $sahi = $row['sahi'];
-              $wrong = $row['wrong'];
-              $time = $row['time'];
-              $eid = $row['eid'];
-              // $id = $row['id'];
-              $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND email='$email'") or die('Error98');
-              $rowcount = mysqli_num_rows($q12);
-              if ($rowcount == 0) {
-                echo '<tr><td>' . $c++ . '</td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $sahi . '</td><td>' . $wrong . '</td><td>' . $time . '&nbsp;min</td>
-  <td><a title="Open quiz description" href="account.php?q=1&fid=' . $eid . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b></a></td>
-  <td><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '" class="pull-right btn sub1" style="margin:0px;background:#99cc32"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Start</b></span></a></b></td></tr>';
-              } else {
-                echo '<tr style="color:#99cc32"><td>' . $c++ . '</td><td>' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $sahi . '</td><td>' . $wrong . '</td><td>' . $time . '&nbsp;min</td>
-  </tr>';
+            <tr style="color:black"><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Marks</b></td><td><b>positive</b></td><td><b>negative</b></td><td><b>Time limit</b></td><td></td><td></td></tr>';
+                $c = 1;
+                while ($row = mysqli_fetch_array($result)) {
+                  $title = $row['title'];
+                  $total = $row['total'];
+                  $sahi = $row['sahi'];
+                  $wrong = $row['wrong'];
+                  $time = $row['time'];
+                  $eid = $row['eid'];
+                  // $id = $row['id'];
+                  $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND email='$email'") or die('Error98');
+                  $rowcount = mysqli_num_rows($q12);
+                  if ($rowcount == 0) {
+                    echo '<tr><td>' . $c++ . '</td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $sahi . '</td><td>' . $wrong . '</td><td>' . $time . '&nbsp;min</td>
+                <td><a title="Open quiz description" href="account.php?q=1&fid=' . $eid . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b></a></td>
+                <td><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '" class="pull-right btn sub1" style="margin:0px;background:#99cc32"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Start</b></span></a></b></td></tr>';
+                  } else {
+                    echo '<tr style="color:#99cc32"><td>' . $c++ . '</td><td>' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $sahi . '</td><td>' . $wrong . '</td><td>' . $time . '&nbsp;min</td>
+            </tr>';
               }
             }
             $c = 0;
             echo '</table></div>';
           } ?>
           <!----quiz reading portion starts--->
+
+          <!--home start-->
+          <?php if (@$_GET['q'] == 5) {
+              $id = $_SESSION['id'];
+             // echo $id;
+              $result = mysqli_query($con, "SELECT * FROM user WHERE id=$id") or die('Error');
+              $row = mysqli_fetch_array($result);
+              if (count($row) != 0) {
+              echo  '<div class="panel"><h1 class="text-center">User Profile</h1><table class="table text-center table-striped title1">';
+              echo '<tr><td><b>Name</b></td><td>'. $row['name'] .'</td>';
+              echo '<tr><td><b>Email</b></td><td>'. $row['email'] .'</td>';
+              echo '<tr><td><b>College</b></td><td>'. $row['college'] .'</td>';
+              if($row['gender'] == 'M'){
+                echo '<tr><td><b>Gender</b></td><td>Male</td>';
+              }else{
+                echo '<tr><td><b>Gender</b></td><td>Female</td>';
+              }
+              echo '<tr><td><b>Mobile</b></td><td>'. $row['mob'] .'</td>';
+              echo '</table></div>';
+              } 
+            }
+          ?>
+              <!----quiz reading portion starts--->
 
           <?php if (@$_GET['fid']) {
             echo '<br />';
@@ -257,14 +281,18 @@ var countdownTimer = setInterval('secondPassed()', 1000);
             echo '</table></div>';
           }
           ?>
-
-
-
         </div>
       </div>
     </div>
   </div>
-
+  
+<script>
+  document.addEventListener('dblclick', ()=>{
+    document.documentElement.requestFullscreen().catch((e)=>{
+        console.log(e);
+    });
+  });
+</script>
 </body>
 
 </html>
