@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 01, 2018 at 03:08 PM
--- Server version: 10.1.36-MariaDB
--- PHP Version: 7.2.10
+-- Host: 127.0.0.1
+-- Generation Time: Dec 22, 2021 at 03:11 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `project1`
+-- Database: `examportal`
 --
 
 -- --------------------------------------------------------
@@ -109,8 +108,22 @@ CREATE TABLE `history` (
   `level` int(11) NOT NULL,
   `sahi` int(11) NOT NULL,
   `wrong` int(11) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `history`
+--
+
+INSERT INTO `history` (`email`, `eid`, `score`, `level`, `sahi`, `wrong`, `date`) VALUES
+('karnwal@gmail.com', '5bd1a1a3c5e5b', 0, 2, 0, 2, '2021-12-18 07:57:42'),
+('karnwal@gmail.com', '558921841f1ec', 4, 2, 2, 0, '2021-12-18 08:44:38'),
+('karnwal@gmail.com', '558920ff906b8', 1, 2, 1, 1, '2021-12-18 10:59:52'),
+('karnwal@gmail.com', '55897338a6659', -1, 1, 0, 1, '2021-12-18 11:01:31'),
+('karnwal@gmail.com', '5589741f9ed52', -5, 5, 0, 5, '2021-12-18 11:05:36'),
+('karnwal@gmail.com', '5589222f16b93', 1, 2, 1, 1, '2021-12-18 11:06:11'),
+('karnwal@gmail.com', '558922ec03021', 1, 2, 1, 1, '2021-12-18 11:06:38'),
+('amandeep@gmail.com', '5bd1a1a3c5e5b', 2, 2, 2, 0, '2021-12-18 11:38:19');
 
 -- --------------------------------------------------------
 
@@ -262,7 +275,7 @@ CREATE TABLE `quiz` (
   `time` bigint(20) NOT NULL,
   `intro` text NOT NULL,
   `tag` varchar(100) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -288,8 +301,16 @@ INSERT INTO `quiz` (`eid`, `title`, `sahi`, `wrong`, `total`, `time`, `intro`, `
 CREATE TABLE `rank` (
   `email` varchar(50) NOT NULL,
   `score` int(11) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `rank`
+--
+
+INSERT INTO `rank` (`email`, `score`, `time`) VALUES
+('karnwal@gmail.com', 2, '2021-12-18 11:06:38'),
+('amandeep@gmail.com', 2, '2021-12-18 11:38:19');
 
 -- --------------------------------------------------------
 
@@ -298,6 +319,7 @@ CREATE TABLE `rank` (
 --
 
 CREATE TABLE `user` (
+  `id` int(11) NOT NULL,
   `name` varchar(50) NOT NULL,
   `gender` varchar(5) NOT NULL,
   `college` varchar(100) NOT NULL,
@@ -305,6 +327,14 @@ CREATE TABLE `user` (
   `mob` bigint(20) NOT NULL,
   `password` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`id`, `name`, `gender`, `college`, `email`, `mob`, `password`) VALUES
+(1, 'Akshay', 'M', 'REC', 'karnwal@gmail.com', 9568936879, '2de1b2d6a6738df78c5f9733853bd170'),
+(2, 'Amandeep', 'M', 'GEU', 'amandeep@gmail.com', 9878787878, '040b7cf4a55014e185813e0644502ea9');
 
 --
 -- Indexes for dumped tables
@@ -320,7 +350,21 @@ ALTER TABLE `admin`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`email`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `email_2` (`email`),
+  ADD UNIQUE KEY `email_4` (`email`),
+  ADD KEY `email` (`email`),
+  ADD KEY `email_3` (`email`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `user`
+--
+ALTER TABLE `user`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
