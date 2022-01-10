@@ -5,7 +5,8 @@
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Online examiner</title>
+  <title>Webixun Infoways TEST</title>
+  <link rel="icon" type="image/x-icon" href="index.png">
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
   <link rel="stylesheet" href="css/main.css">
@@ -21,41 +22,43 @@
   }
   ?>
   <!--alert message end-->
-
+  <style>
+    button[disabled],
+    html input[disabled] {
+      cursor: not-allowed !important;
+    }
+  </style>
 </head>
 <?php
 include_once 'dbConnection.php';
 ?>
 
 <body>
-  <div class="header">
-    <div class="row" style="background-color:#f4511e;">
-      <div class="col-lg-6">
-        <span class="logo"></span>
-      </div>
-      <div class="col-md-4 col-md-offset-2">
-        <?php
-        include_once 'dbConnection.php';
-        session_start();
-        if (!(isset($_SESSION['email']))) {
-          header("location:index.php");
-        } else {
-          $name = $_SESSION['name'];
-          $email = $_SESSION['email'];
-          $id = $_SESSION['id'];
+  <div class="row" style="background-color:#006BA0;display:flex;align-items:center">
+    <div class="col-lg-6">
+      <img src="logo-w.png" style="height:50px" />
+    </div>
+    <div class="col-md-4 col-md-offset-2">
+      <?php
+      include_once 'dbConnection.php';
+      session_start();
+      if (!(isset($_SESSION['email']))) {
+        header("location:index.php");
+      } else {
+        $name = $_SESSION['name'];
+        $email = $_SESSION['email'];
+        // $id = $_SESSION['id'];
 
-          include_once 'dbConnection.php';
-          echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Welcome,</span> <a href="account.php?q=5" class="log log1">' . $name . '</a>&nbsp;|&nbsp;<a href="logout.php?q=account.php" class="log"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Signout</button></a></span>';
-        } ?>
-      </div>
+        include_once 'dbConnection.php';
+        echo '<span class="pull-right top title1" ><span class="log1"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;&nbsp;&nbsp;&nbsp;Welcome,</span> <span style="color:white">' . $name . '</span>&nbsp;|&nbsp;<a href="logout.php?q=account.php" class="log"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span>&nbsp;Signout</button></a></span>';
+      } ?>
     </div>
   </div>
   <div class="bg">
 
     <!--navigation menu-->
-    <nav class="navbar navbar-default title1">
+    <!-- <nav class="navbar navbar-default title1">
       <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
             <span class="sr-only">Toggle navigation</span>
@@ -65,83 +68,77 @@ include_once 'dbConnection.php';
           </button>
           <a class="navbar-brand" href="account.php?q=1"><b>Dashboard - Student</b></a>
         </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav navbar left">
             <li <?php if (@$_GET['q'] == 1) echo 'class="active"'; ?>><a href="account.php?q=1"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>&nbsp;Home<span class="sr-only">(current)</span></a></li>
             <li <?php if (@$_GET['q'] == 2) echo 'class="active"'; ?>><a href="account.php?q=2"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>&nbsp;History</a></li>
-            <!-- <li <?php //if (@$_GET['q'] == 3) echo 'class="active"'; ?>><a href="account.php?q=3"><span class="glyphicon glyphicon-stats" aria-hidden="true"></span>&nbsp;Ranking</a></li> -->
-
           </ul>
-
-        </div><!-- /.navbar-collapse -->
-      </div><!-- /.container-fluid -->
-    </nav>
-    <!--navigation menu closed-->
-    <div class="container">
-      <!--container start-->
-      <div class="row">
-        <div class="col-md-12">
-
-
-
-
-
-
+        </div>
+      </div>
+    </nav> -->
+    <div class="container" style="width:100vw;height:90vh;margin:0 10px;display:flex;justify-content:center;align-items:center">
+      <div class="row" style="width:100%">
+        <div class="col-md-12" style="width:100%">
           <!--home start-->
           <?php if (@$_GET['q'] == 1) {
 
-            $result = mysqli_query($con, "SELECT * FROM quiz ORDER BY date DESC") or die('Error');
-            echo  '<div class="panel"><table class="table table-striped title1">
-            <tr style="color:black"><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Marks</b></td><td><b>positive</b></td><td><b>negative</b></td><td><b>Time limit</b></td><td></td><td></td></tr>';
-                $c = 1;
-                while ($row = mysqli_fetch_array($result)) {
-                  $title = $row['title'];
-                  $total = $row['total'];
-                  $sahi = $row['sahi'];
-                  $wrong = $row['wrong'];
-                  $time = $row['time'];
-                  $eid = $row['eid'];
-                  // $id = $row['id'];
-                  $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND email='$email'") or die('Error98');
-                  $rowcount = mysqli_num_rows($q12);
-                  if ($rowcount == 0) {
-                    echo '<tr><td>' . $c++ . '</td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $sahi . '</td><td>' . $wrong . '</td><td>' . $time . '&nbsp;min</td>
-                <td><a title="Open quiz description" href="account.php?q=1&fid=' . $eid . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b></a></td>
-                <td><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '" class="pull-right btn sub1" style="margin:0px;background:#99cc32"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Start</b></span></a></b></td></tr>';
-                  } else {
-                    echo '<tr style="color:#99cc32"><td>' . $c++ . '</td><td>' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $sahi . '</td><td>' . $wrong . '</td><td>' . $time . '&nbsp;min</td>
-            </tr>';
-              }
-            }
-            $c = 0;
-            echo '</table></div>';
+            // $result = mysqli_query($con, "SELECT * FROM quiz ORDER BY date DESC") or die('Error');
+            // echo  '<div class="panel"><table class="table table-striped title1">
+            // <tr style="color:black"><td><b>S.N.</b></td><td><b>Topic</b></td><td><b>Total question</b></td><td><b>Marks</b></td><td><b>positive</b></td><td><b>negative</b></td><td><b>Time limit</b></td><td></td><td></td></tr>';
+            // $c = 1;
+            // while ($row = mysqli_fetch_array($result)) {
+            //   $title = $row['title'];
+            //   $total = $row['total'];
+            //   $sahi = $row['sahi'];
+            //   $wrong = $row['wrong'];
+            //   $time = $row['time'];
+            //   $eid = $row['eid'];
+            //   // $id = $row['id'];
+            //   $q12 = mysqli_query($con, "SELECT score FROM history WHERE eid='$eid' AND email='$email'") or die('Error98');
+            //   $rowcount = mysqli_num_rows($q12);
+            //   if ($rowcount == 0) {
+            //     echo '<tr><td>' . $c++ . '</td><td>' . $title . '</td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $sahi . '</td><td>' . $wrong . '</td><td>' . $time . '&nbsp;min</td>
+            //     <td><a title="Open quiz description" href="account.php?q=1&fid=' . $eid . '"><b><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span></b></a></td>
+            //     <td><b><a href="account.php?q=quiz&step=2&eid=' . $eid . '&n=1&t=' . $total . '" class="pull-right btn sub1" style="margin:0px;background:#99cc32"><span class="glyphicon glyphicon-new-window" aria-hidden="true"></span>&nbsp;<span class="title1"><b>Start</b></span></a></b></td></tr>';
+            //   } else {
+            //     echo '<tr style="color:#99cc32"><td>' . $c++ . '</td><td>' . $title . '&nbsp;<span title="This quiz is already solve by you" class="glyphicon glyphicon-ok" aria-hidden="true"></span></td><td>' . $total . '</td><td>' . $sahi * $total . '</td><td>' . $sahi . '</td><td>' . $wrong . '</td><td>' . $time . '&nbsp;min</td>
+            // </tr>';
+            //   }
+            // }
+            // $c = 0;
+            // echo '</table></div>';
+            echo '<div class="row" style="width:100%">
+            <div class="col-md-6" style="display: flex;flex-direction: column;align-items: end;justify-content:center;height:100vh">
+            <img src="full.png" style="width:200px"/>
+            <p>You can start the quiz after.
+            </p></div>
+            <div class="col-md-6" style="display: flex;flex-direction: column;align-items: start;justify-content:center;height:100vh"><button id="demo" class="disabled" disabled>Start Test</button>  </div>
+            </div>';
           } ?>
           <!----quiz reading portion starts--->
 
           <!--home start-->
           <?php if (@$_GET['q'] == 5) {
-              $id = $_SESSION['id'];
-             // echo $id;
-              $result = mysqli_query($con, "SELECT * FROM user WHERE id=$id") or die('Error');
-              $row = mysqli_fetch_array($result);
-              if (count($row) != 0) {
+            $id = $_SESSION['id'];
+            // echo $id;
+            $result = mysqli_query($con, "SELECT * FROM user WHERE id=$id") or die('Error');
+            $row = mysqli_fetch_array($result);
+            if (count($row) != 0) {
               echo  '<div class="panel"><h1 class="text-center">User Profile</h1><table class="table text-center table-striped title1">';
-              echo '<tr><td><b>Name</b></td><td>'. $row['name'] .'</td>';
-              echo '<tr><td><b>Email</b></td><td>'. $row['email'] .'</td>';
-              echo '<tr><td><b>College</b></td><td>'. $row['college'] .'</td>';
-              if($row['gender'] == 'M'){
+              echo '<tr><td><b>Name</b></td><td>' . $row['name'] . '</td>';
+              echo '<tr><td><b>Email</b></td><td>' . $row['email'] . '</td>';
+              echo '<tr><td><b>College</b></td><td>' . $row['college'] . '</td>';
+              if ($row['gender'] == 'M') {
                 echo '<tr><td><b>Gender</b></td><td>Male</td>';
-              }else{
+              } else {
                 echo '<tr><td><b>Gender</b></td><td>Female</td>';
               }
-              echo '<tr><td><b>Mobile</b></td><td>'. $row['mob'] .'</td>';
+              echo '<tr><td><b>Mobile</b></td><td>' . $row['mob'] . '</td>';
               echo '</table></div>';
-              } 
             }
+          }
           ?>
-              <!----quiz reading portion starts--->
+          <!----quiz reading portion starts--->
 
           <?php if (@$_GET['fid']) {
             echo '<br />';
@@ -285,14 +282,20 @@ var countdownTimer = setInterval('secondPassed()', 1000);
       </div>
     </div>
   </div>
-  
-<script>
-  document.addEventListener('dblclick', ()=>{
-    document.documentElement.requestFullscreen().catch((e)=>{
+  <script>
+    const myTimeout = setTimeout(myGreeting, 60000);
+
+    function myGreeting() {
+      document.getElementById("demo").disabled = false
+    }
+  </script>
+  <script>
+    document.addEventListener('dblclick', () => {
+      document.documentElement.requestFullscreen().catch((e) => {
         console.log(e);
+      });
     });
-  });
-</script>
+  </script>
 </body>
 
 </html>

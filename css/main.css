@@ -118,7 +118,7 @@ hr {
 }
 
 .top {
-    margin-top: 20px;
+    margin: 20px;
 }
 
 .log1 {
@@ -138,8 +138,6 @@ hr {
 }
 
 .log:hover {
-    color: #9acd32;
-    border-top: 2px solid;
-    border-color: orange;
+    color: #000;
     text-decoration: none;
 }

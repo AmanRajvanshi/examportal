@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #counter {
+      font-size: 25px;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <div id="counter">0</div>
+  <button id="btn">
+    <span id="countdown">0:00</span>
+  </button>
+  <script>
+    $('#btn').prop('disabled', true);
+    startCountDown();
+
+    function getCounter() {
+      return parseInt($('#counter').html());
+    }
+
+    function setCounter(count) {
+      $('#counter').html(count);
+    }
+
+    $("#btn").click(function () {
+      setCounter(getCounter() + 25);
+      $('#btn').prop('disabled', true);
+      startCountDown();
+    });
+
+    function startCountDown() {
+      var minutes = 0,
+        seconds = 59;
+      $("#countdown").html(minutes + ":" + seconds);
+      var count = setInterval(function () {
+        if (parseInt(minutes) < 0 || parseInt(seconds) <= 0) {
+          $("#countdown").html(minutes + ":" + seconds);
+          clearInterval(count);
+          $('#btn').prop('disabled', false);
+        } else {
+          $("#countdown").html(minutes + ":" + seconds);
+          seconds--;
+          if (seconds < 10) seconds = "0" + seconds;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+
+</html>

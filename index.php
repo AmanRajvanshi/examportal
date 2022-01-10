@@ -5,13 +5,16 @@
   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Onine examiner</title>
+  <title>Webixun Infoways TEST</title>
+  <link rel="icon" type="image/x-icon" href="index.png">
   <link rel="stylesheet" href="css/bootstrap.min.css" />
   <link rel="stylesheet" href="css/bootstrap-theme.min.css" />
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/font.css">
   <script src="js/jquery.js" type="text/javascript"></script>
-
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap" rel="stylesheet">
   <script src="js/bootstrap.min.js" type="text/javascript"></script>
   <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
   <?php if (@$_GET['w']) {
@@ -69,6 +72,19 @@
       text-align: center;
     }
 
+    .signinmodalbutton {
+      color: white;
+      padding: 10px 15px;
+      margin: 8px 0;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+      border-radius: 5000px;
+      text-transform: uppercase;
+      font-size: 15px;
+      font-weight: bold;
+    }
+
     @media screen and (min-width: 768px) {
       .modal:before {
         display: inline-block;
@@ -86,11 +102,11 @@
 
 
 
-      {
+    /* {
       font: 400 15px Lato, sans-serif;
       line-height: 1.8;
       color: #818181;
-    }
+    } */
 
     h2 {
       font-size: 24px;
@@ -121,10 +137,16 @@
     }
 
     .jumbotron {
-      background-color: #f4511e;
+      background-color: #006BA0;
       color: #fff;
-      padding: 100px 25px;
-      font-family: Montserrat, sans-serif;
+      padding: 60px 0px;
+      font-family: 'Raleway', sans-serif;
+      margin-bottom: 0;
+    }
+
+    .jumbotron p {
+      font-size: 28px;
+      font-weight: 200;
     }
 
     .container-fluid {
@@ -210,6 +232,13 @@
       border-bottom-right-radius: 0px;
     }
 
+    .footer_text {
+      color: #000;
+      font-size: 20px;
+      text-align: center;
+      margin-right: 10px;
+    }
+
     .panel-footer {
       background-color: white !important;
     }
@@ -245,12 +274,12 @@
 
     .navbar li a,
     .navbar .navbar-brand {
-      color: #f4511e !important;
+      color: #006BA0 !important;
     }
 
     .navbar-nav li a:hover,
     .navbar-nav li.active a {
-      color: #f4511e !important;
+      color: #000 !important;
       background-color: #fff !important;
 
     }
@@ -258,6 +287,13 @@
     .navbar-default .navbar-toggle {
       border-color: transparent;
       color: #fff !important;
+    }
+
+    footer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: row-reverse;
     }
 
     footer .glyphicon {
@@ -340,26 +376,26 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#myPage"><span class="glyphicon glyphicon-home"></span></a>
+          <a class="navbar-brand" href="#myPage"><img src="full.png" style="height:30px" /></a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" data-toggle="modal" data-target="#login">ADMIN</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#myModal">SIGN IN</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#myModal1">SIGN UP</a></li>
-            <li><a href="#" data-toggle="modal" data-target="#login2">TEACHER</a></li>
-            <li><a href="#services">SERVICES</a></li>
-            <li><a href="#developers">DEVELOPERS</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#contact">CONTACT</a></li>
+            <li><a href="#" data-toggle="modal" data-target="#login" style="display:none">ADMIN</a></li>
+            <!-- <li><a href="#" data-toggle="modal" data-target="#myModal">SIGN IN</a></li> -->
+            <li><a href="#" data-toggle="modal" data-target="#myModal1">SIGN UP TO BEGIN TEXT</a></li>
+            <!-- <li><a href="#" data-toggle="modal" data-target="#login2">TEACHER</a></li> -->
+            <!-- <li><a href="#services">SERVICES</a></li>
+            <li><a href="#developers">DEVELOPERS</a></li> -->
+            <!-- <li><a href="#about">ABOUT</a></li> -->
+            <!-- <li><a href="#contact">CONTACT</a></li> -->
           </ul>
         </div>
       </div>
     </nav>
 
     <div class="jumbotron text-center">
-      <h1>Online Examination</h1>
-      <p>e-EXAMINATION</p>
+      <h1>Webixun Infoways Pvt. ltd.</h1>
+      <p>Online Examination</p>
       <!--  form>
     <div class="input-group">
       <input type="email" class="form-control" size="50" placeholder="Email Address" required>
@@ -510,7 +546,7 @@
         <div class="modal-content title1">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title title1"><span style="color:#f4511e;font-family:Montserrat, sans-serif; font-size: 20px !important;letter-spacing: 4px; "><b>SIGN UP</b></span></h4>
+            <h4 class="modal-title title1"><span style="color:#000;font-family:Montserrat, sans-serif; font-size: 20px !important;letter-spacing: 4px; "><b>SIGN UP</b></span></h4>
           </div>
           <div class="modal-body">
             <form class="form-horizontal" name="form" action="sign.php?q=account.php" onSubmit="return validateForm()" method="POST">
@@ -572,7 +608,6 @@
                   <label class="col-md-3 control-label" for="password"></label>
                   <div class="col-md-6">
                     <input id="password" name="password" placeholder="Enter your password" class="form-control input-md" type="password">
-
                   </div>
                 </div>
 
@@ -580,8 +615,25 @@
                   <label class="col-md-3 control-label" for="cpassword"></label>
                   <div class="col-md-6">
                     <input id="cpassword" name="cpassword" placeholder="Conform Password" class="form-control input-md" type="password">
-
                   </div>
+                </div>
+                <div class="row">
+                  <div class="col-md-3"></div>
+                  <div class="col-md-6" style="display:flex;justify-content:space-around;align-items:center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" required name="flexRadioDefault" id="flexRadioDefault1">
+                      <label class="form-check-label" for="flexRadioDefault1" >
+                        IT
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" required name="flexRadioDefault" id="flexRadioDefault2">
+                      <label class="form-check-label" for="flexRadioDefault2">
+                        MBA
+                      </label>
+                    </div>
+                  </div>
+                  <div class="col-md-3"></div>
                 </div>
                 <?php if (@$_GET['q7']) {
                   echo '<p style="color:red;font-size:15px;">' . @$_GET['q7'];
@@ -590,7 +642,7 @@
                 <div class="form-group">
                   <label class="col-md-3 control-label" for=""></label>
                   <div class="col-md-6">
-                    <input type="submit" style="background: #f4511e;" class="sub" value="sign up" />
+                    <input type="submit" style="background:  #006BA0;" class="sub signinmodalbutton" value="sign up" />
                   </div>
                 </div>
               </fieldset>
@@ -609,13 +661,12 @@
 
 
     <!-- Container (Services Section) -->
-    <div id="services" class="container-fluid text-center">
+    <!-- <div id="services" class="container-fluid text-center">
       <h2>SERVICES</h2>
       <h4>What we offer</h4>
       <br>
       <div class="row slideanim">
         <div class="col-sm-4">
-          <!-- span class="glyphicon glyphicon-off logo-small"></span-->
           <i class="material-icons" style="font-size:60px;color:red">group_add</i>
           <h4>e Examination</h4>
           <p> Multiple users One platform</p>
@@ -650,8 +701,6 @@
         </div>
       </div>
     </div>
-
-    <!-- Container (Portfolio Section) -->
     <div id="developers" class="container-fluid text-center bg-grey">
       <h2>Developers</h2><br>
       <h4>Who are we</h4>
@@ -675,14 +724,11 @@
 
       <h2>What our Users say</h2>
       <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
-        <!-- Indicators -->
         <ol class="carousel-indicators">
           <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
           <li data-target="#myCarousel" data-slide-to="1"></li>
           <li data-target="#myCarousel" data-slide-to="2"></li>
         </ol>
-
-        <!-- Wrapper for slides -->
         <div class="carousel-inner" role="listbox">
           <div class="item active">
             <h4>"Very good iniative. I am so happy with the result!"<br><span>Michael Roe, Vice President, Comment Box</span></h4>
@@ -694,8 +740,6 @@
             <h4>"Could I... BE any more happy with this startup"<br><span>Chandler Bing, Actor, FriendsAlot</span></h4>
           </div>
         </div>
-
-        <!-- Left and right controls -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
           <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
@@ -705,10 +749,10 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-    </div>
+    </div> -->
 
     <!-- Container (About Section) -->
-    <div id="about" class="container-fluid">
+    <!-- <div id="about" class="container-fluid">
       <div class="row">
         <div class="col-sm-8">
           <h2>About Page</h2><br>
@@ -721,11 +765,11 @@
           <span class="glyphicon glyphicon-signal logo"></span>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
     <!-- Container (Contact Section) -->
-    <div id="contact" class="container-fluid bg-grey">
+    <!-- <div id="contact" class="container-fluid bg-grey">
       <h2 class="text-center">CONTACT</h2>
       <div class="row">
         <div class="col-sm-5">
@@ -733,50 +777,43 @@
           <p><span class="glyphicon glyphicon-map-marker"></span> Karnataka, INDIA</p>
           <p><span class="glyphicon glyphicon-phone"></span> +91 9491849828 </p>
           <p><span class="glyphicon glyphicon-envelope"></span> kpsagar1999@gmail.com</p>
-        </div>
-        <div class="col-sm-7 slideanim">
-
-
-
-
-
-
-
-          <?php if (@$_GET['q']) echo '<span style="font-size:18px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;' . @$_GET['q'] . '</span>';
-          else {
-            echo '
-      <form role="form"  method="post" action="feed.php?q=index.php">
-
-
-
-
-
-      <div class="row">
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
-        </div>
-        <div class="col-sm-6 form-group">
-          <input class="form-control" id="email" name="subject" placeholder="subject" type="text" required>
-        </div>
-      </div>
-      <textarea class="form-control" id="comments" name="feedback" placeholder="Comment" rows="4"></textarea><br>
-      <div class="row">
-        <div class="col-sm-12 form-group">
-          <button class="btn btn-default pull-right" name="submit" input type="submit">send</button>
-        </div>
-      </form>';
-          } ?>
-        </div>
+        </div> -->
+    <!-- <div class="col-sm-7 slideanim"> -->
+    <!-- 
+           php
+            if 
+           (@$_GET['q']) 
+           echo 
+           '<span style="font-size:18px;"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span>&nbsp;' . @$_GET['q'] . '</span>';
+           else {
+             echo '
+       <form role="form"  method="post" action="feed.php?q=index.php">
+       <div class="row">
+         <div class="col-sm-6 form-group">
+           <input class="form-control" id="name" name="name" placeholder="Name" type="text" required>
+         </div>
+         <div class="col-sm-6 form-group">
+           <input class="form-control" id="email" name="email" placeholder="Email" type="email" required>
+         </div>
+         <div class="col-sm-6 form-group">
+           <input class="form-control" id="email" name="subject" placeholder="subject" type="text" required>
+         </div>
+       </div>
+       <textarea class="form-control" id="comments" name="feedback" placeholder="Comment" rows="4"></textarea><br>
+       <div class="row">
+         <div class="col-sm-12 form-group">
+           <button class="btn btn-default pull-right" name="submit" input type="submit">send</button>
+         </div>
+       </form>';
+           } ?> -->
+    <!-- </div>
       </div>
     </div>
-    </div>
+    </div> -->
 
 
     <!-- Add Google Maps -->
-    <div id="googleMap" style="height:400px;width:100%;"></div>
+    <!-- <div id="googleMap" style="height:400px;width:100%;"></div> -->
     <script>
       function myMap() {
         var myCenter = new google.maps.LatLng(13.0108439, 74.7921164);
@@ -794,18 +831,15 @@
         marker.setMap(map);
       }
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFj4gNzJYXg7z8mlzs0fHLKvi1MAZYI3c&callback=myMap"></script>
-    <!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
 
-    <footer class="container-fluid text-center">
-      <a href="#myPage" title="To Top">
+    <!-- <footer class="container-fluid text-center"> -->
+    <!-- <a href="#myPage" title="To Top">
         <span class="glyphicon glyphicon-chevron-up"></span>
-      </a>
-      <p>Thank you for visiting us.</p>
-    </footer>
+      </a> -->
+    <!-- <a href="https://webixun.com" title="Visit Webixun">
+        <p class="footer_text">Webixun Infoways Pvt. Ltd.</p>
+      </a> -->
+    <!-- </footer> -->
 
     <script>
       $(document).ready(function() {
